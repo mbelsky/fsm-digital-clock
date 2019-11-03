@@ -1,6 +1,7 @@
 .Display-time {
-  color: #09d3ac;
+  color: var(--primary-color);
   font-size: 20vmin;
+  user-select: none;
 }
 
 .Display-timeSeparator {

@@ -25,7 +25,14 @@ function App() {
 
   return (
     <div className='App'>
-      <Display {...parseNow(now)} />
+      <div className='Clock'>
+        <Display {...parseNow(now)} />
+        <div className='Clock-ControlsPanel'>
+          <button className='Clock-ControlsPanel-Button'>Set</button>
+          <button className='Clock-ControlsPanel-Button'>H</button>
+          <button className='Clock-ControlsPanel-Button'>M</button>
+        </div>
+      </div>
     </div>
   )
 }
