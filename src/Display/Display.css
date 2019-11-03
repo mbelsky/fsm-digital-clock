@@ -1,0 +1,17 @@
+.Display-time {
+  color: #09d3ac;
+  font-size: 20vmin;
+}
+
+.Display-timeSeparator {
+  animation: 1.5s infinite blink;
+}
+
+@keyframes blink {
+  0%, 59% {
+    opacity: 1;
+  }
+  60%, 100% {
+    opacity: 0;
+  }
+}
