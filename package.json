@@ -39,5 +39,18 @@
   },
   "devDependencies": {
     "prettier": "^1.18.2"
-  }
+  },
+  "description": "A simple digital clock web app based on a finite state machine",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbelsky/fsm-digital-clock.git"
+  },
+  "keywords": [],
+  "author": "Max Belsky <public.belsky@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mbelsky/fsm-digital-clock/issues"
+  },
+  "homepage": "https://github.com/mbelsky/fsm-digital-clock#readme"
 }
