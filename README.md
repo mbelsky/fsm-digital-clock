@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FSM Digital Clock
+
+![clock's preview](/public/readme.png)
+
+A simple digital clock web app based on a finite state machine.
+
+_This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)._
 
 ## Available Scripts
 
