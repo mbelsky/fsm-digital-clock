@@ -5,12 +5,13 @@ function formatValue(value) {
   return String(value).padStart(2, '0')
 }
 
-function Display({ hours, minutes }) {
+function Display({ isBlinking, hours, minutes }) {
+  const classname = isBlinking ? 'Display-blinking' : undefined
   return (
     <div className='Display-time'>
-      <span>{formatValue(hours)}</span>
-      <span className='Display-timeSeparator'>:</span>
-      <span>{formatValue(minutes)}</span>
+      <span className={classname}>{formatValue(hours)}</span>
+      <span className='Display-blinking'>:</span>
+      <span className={classname}>{formatValue(minutes)}</span>
     </div>
   )
 }

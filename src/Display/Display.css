@@ -4,15 +4,17 @@
   user-select: none;
 }
 
-.Display-timeSeparator {
+.Display-blinking {
   animation: 1.5s infinite blink;
 }
 
 @keyframes blink {
-  0%, 59% {
+  0%,
+  59% {
     opacity: 1;
   }
-  60%, 100% {
+  60%,
+  100% {
     opacity: 0;
   }
 }

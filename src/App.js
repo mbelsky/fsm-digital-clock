@@ -1,24 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useEffect, useReducer } from 'react'
 import './App.css'
+import clockReducer from './Clock/clockReducer'
+import { ACTIONS, STATUSES } from './Clock/consts'
 import Display from './Display/Display'
+import parseNow from './utils/parseNow'
 
-function parseNow(now) {
-  const date = new Date(now)
-  return {
-    hours: date.getHours(),
-    minutes: date.getMinutes(),
+function getDisplayProps({ editedNow, now, nowOffset, status }) {
+  switch (status) {
+    case STATUSES.IDLE:
+      return parseNow(now + nowOffset)
+    case STATUSES.SET_TIME:
+      return { ...editedNow, isBlinking: true }
+    default:
+      throw new Error()
   }
 }
 
 function App() {
-  const [now, setNow] = useState(Date.now())
+  const [state, dispatch] = useReducer(clockReducer, {
+    now: Date.now(),
+    nowOffset: 0,
+    status: STATUSES.IDLE,
+  })
+
+  const handleSetClick = useCallback(
+    () => dispatch({ type: ACTIONS.ON_SET }),
+    [],
+  )
+  const handleHoursClick = useCallback(
+    () => dispatch({ type: ACTIONS.ON_HOURS }),
+    [],
+  )
+  const handleMinutesClick = useCallback(
+    () => dispatch({ type: ACTIONS.ON_MINUTES }),
+    [],
+  )
 
   useEffect(() => {
-    function trackNow() {
-      setNow(Date.now())
-    }
-
-    const id = window.setInterval(trackNow, 1000)
+    const id = window.setInterval(
+      () => dispatch({ type: ACTIONS.SET_NOW }),
+      1000,
+    )
 
     return () => window.clearInterval(id)
   }, [])
@@ -26,11 +48,26 @@ function App() {
   return (
     <div className='App'>
       <div className='Clock'>
-        <Display {...parseNow(now)} />
+        <Display {...getDisplayProps(state)} key={state.status} />
         <div className='Clock-ControlsPanel'>
-          <button className='Clock-ControlsPanel-Button'>Set</button>
-          <button className='Clock-ControlsPanel-Button'>H</button>
-          <button className='Clock-ControlsPanel-Button'>M</button>
+          <button
+            className='Clock-ControlsPanel-Button'
+            onClick={handleSetClick}
+          >
+            Set
+          </button>
+          <button
+            className='Clock-ControlsPanel-Button'
+            onClick={handleHoursClick}
+          >
+            H
+          </button>
+          <button
+            className='Clock-ControlsPanel-Button'
+            onClick={handleMinutesClick}
+          >
+            M
+          </button>
         </div>
       </div>
     </div>
